@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Driver - Technology Strategy for Purpose-Driven Organizations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="25" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="75" r="1" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: slideUp 1s ease 0.2s forwards;
+        }
+        
+        .hero .subtitle {
+            font-size: 22px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: slideUp 1s ease 0.4s forwards;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2563eb;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1a1a1a;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .service-card {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+        
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+        
+        /* Organizations Section */
+        .organizations {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        
+        .organizations-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .organizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+        }
+        
+        .organization-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 120px;
+        }
+        
+        .organization-logo:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .organization-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .organization-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+        
+        .about-text p {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .about-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        
+        .contact p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+        
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #e5e7eb;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 18px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .contact-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            text-align: left;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #e5e7eb;
+        }
+        
+        .contact-info p {
+            margin-bottom: 16px;
+            opacity: 0.9;
+        }
+        
+        .contact-info a {
+            color: #60a5fa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: #93c5fd;
+        }
+        
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .hero .subtitle {
+                font-size: 18px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .contact-form-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-form {
+                padding: 24px;
+            }
+            
+            .organizations-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+            
+            .organization-logo {
+                height: 100px;
+                padding: 15px;
+            }
+            
+            .organization-logo img {
+                max-height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Joshua Driver</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Technology Strategy<br>for Purpose-Driven<br>Organizations</h1>
+                <p class="subtitle">From startup chaos to sustainable growth. I help nonprofits, SaaS companies, and public sector organizations build technology that scales with their mission.</p>
+                <a href="#contact" class="cta-button">Start Your Transformation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Services That Scale</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Technology Strategy</h3>
+                    <p>Assess your current tech stack and create a roadmap that aligns with your organizational goals and budget constraints.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Startup Technology Consulting</h3>
+                    <p>Navigate the critical technology decisions that make or break early-stage companies. From MVP to scale-ready architecture.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Business Requirements & Project Management</h3>
+                    <p>Transform business needs into clear technical requirements and manage projects that actually deliver on time and budget.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Technology Assessment</h3>
+                    <p>Comprehensive analysis of your existing technology infrastructure, identifying opportunities for improvement and cost optimization.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Mentorship</h3>
+                    <p>One-on-one guidance for tech leaders, entrepreneurs, and professionals navigating career transitions or scaling challenges in technology and social impact.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Website Creation</h3>
+                    <p>Custom website development that reflects your mission and drives engagement. From simple landing pages to complex web applications that scale with your organization.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Fractional Work</h3>
+                    <p>Part-time executive leadership for organizations that need strategic technology guidance without the full-time commitment. Perfect for growing companies and nonprofits.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>B-Corp/Benefit Corp Assistance</h3>
+                    <p>Navigate the B-Corp certification process and benefit corporation formation. Leverage my experience founding Selfless.ly as a B-Corp to help your organization achieve its social impact goals.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎤</div>
+                    <h3>Speaking Engagements</h3>
+                    <p>Keynote presentations and workshops on technology strategy, social impact, and the intersection of business and purpose. Available for conferences, corporate events, and educational institutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="organizations" id="organizations">
+        <div class="container">
+            <h2 class="section-title">Organizations I've Worked With</h2>
+            <p class="organizations-subtitle">Trusted by purpose-driven organizations across various sectors</p>
+            
+            <div class="organizations-grid">
+                <div class="organization-logo">
+                    <img src="logos/selflessly.svg" alt="Selfless.ly" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/nic.jpg" alt="NIC Inc" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/leukemia-lymphoma.jpg" alt="Leukemia & Lymphoma Society" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/open-for-service.jpg" alt="Open for Service" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/indianapolis-eoab.jpg" alt="Indianapolis Equal Opportunity Advisory Board" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/chartd.jpg" alt="Chartd" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/plan-forward.jpg" alt="Plan Forward" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/leadership-indy.jpg" alt="Leadership Indy" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/iyg.jpg" alt="IYG" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/data317.jpg" alt="Data317" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/secureup.jpg" alt="SecureUp" />
+                </div>
+                <div class="organization-logo">
+                    <img src="logos/gener8tor.jpg" alt="Gener8tor" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Building Technology That Actually Helps</h2>
+                    <p>I've spent over 10 years at the intersection of technology and social impact—from founding Selfless.ly (a B-Corp SaaS platform) to leading innovation teams at NIC Inc, managing $6M+ budgets and serving government agencies across 6 states.</p>
+                    <p>My unique perspective comes from being both a tech executive and social impact advocate. I've raised $42K for the Leukemia & Lymphoma Society, created Open for Service (which garnered CNN and BBC coverage), and currently serve on Indianapolis's Equal Opportunity Advisory Board.</p>
+                    <p>The result? I don't just understand your technology challenges—I understand the mission constraints, budget realities, and stakeholder complexities that make your organization different. Let's build something that works for your world, not against it.</p>
+                </div>
+                <div class="about-image">
+                    <span>⚡</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Technology Strategy?</h2>
+            <p>Let's discuss how strategic technology decisions can accelerate your mission.</p>
+            
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="technology-strategy">Technology Strategy</option>
+                            <option value="startup-consulting">Startup Technology Consulting</option>
+                            <option value="project-management">Business Requirements & Project Management</option>
+                            <option value="technology-assessment">Technology Assessment</option>
+                            <option value="mentorship">Mentorship</option>
+                            <option value="website-creation">Website Creation</option>
+                            <option value="fractional-work">Fractional Work</option>
+                            <option value="b-corp-assistance">B-Corp/Benefit Corp Assistance</option>
+                            <option value="speaking-engagements">Speaking Engagements</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your technology challenges and how I can help..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="contact-button">Send Message</button>
+                </form>
+                
+                <div class="contact-info">
+                    <h3>Or reach out directly:</h3>
+                    <p><strong>Email:</strong> <a href="mailto:josh@joshuadriver.com">josh@joshuadriver.com</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/joshuadriver" target="_blank">linkedin.com/in/joshuadriver</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Joshua Driver. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple scroll reveal for service cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Create email content
+            const emailBody = `
+Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company || 'Not provided'}
+Service Interest: ${data.service || 'Not specified'}
+Message: ${data.message}
+            `;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:josh@joshuadriver.com?subject=Contact Form Submission from ${data.name}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you for your message! Your email client should open with a pre-filled message. Please send it to complete your inquiry.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
