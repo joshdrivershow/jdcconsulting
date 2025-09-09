@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joshua Driver - Technology Strategy for Purpose-Driven Organizations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%2300d4a6"/><stop offset="100%" stop-color="%233b82f6"/></linearGradient></defs><path d="M32 4l22 12.7v25.6L32 56 10 42.3V16.7L32 4z" fill="none" stroke="url(%23g)" stroke-width="4" stroke-linejoin="round"/><path d="M26 24l-6 8 6 8M38 24l6 8-6 8" fill="none" stroke="url(%23g)" stroke-width="4" stroke-linecap="round"/></svg>' />
     <style>
         :root {
@@ -16,6 +19,8 @@
             --surface-2: #0c1a29;
             --hero-grad-1: #12304a;
             --hero-grad-2: #1e3a5f;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         * {
             margin: 0;
@@ -24,7 +29,7 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
@@ -136,6 +141,7 @@
         }
         
         .hero h1 {
+            font-family: var(--font-heading);
             font-size: 64px;
             font-weight: 800;
             line-height: 1.1;
@@ -199,6 +205,7 @@
         }
         
         .section-title {
+            font-family: var(--font-heading);
             font-size: 48px;
             font-weight: 700;
             text-align: center;
@@ -241,6 +248,7 @@
         }
         
         .service-card h3 {
+            font-family: var(--font-heading);
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 16px;
@@ -324,6 +332,7 @@
         }
         
         .about-text h2 {
+            font-family: var(--font-heading);
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 24px;
@@ -338,14 +347,19 @@
         }
         
         .about-image {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
             border-radius: 16px;
             height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 48px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(1.05) contrast(1.05);
         }
         
         /* Contact Section */
@@ -581,6 +595,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
+                <li><a href="#organizations">Organizations</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -721,7 +736,7 @@
                     <p>The result? I don't just understand your technology challenges—I understand the mission constraints, budget realities, and stakeholder complexities that make your organization different. Let's build something that works for your world, not against it.</p>
                 </div>
                 <div class="about-image">
-                    <span>⚡</span>
+                    <img src="assets/jdc-headshot.jpg" alt="Portrait of Joshua Driver"/>
                 </div>
             </div>
         </div>
