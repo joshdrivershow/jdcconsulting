@@ -1,0 +1,15 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="speakingGrad" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#00d4a6"/>
+<stop offset="100%" stop-color="#3b82f6"/>
+</linearGradient>
+</defs>
+<rect width="60" height="60" rx="12" fill="url(#speakingGrad)"/>
+<g transform="translate(15 15)">
+<ellipse cx="15" cy="15" rx="8" ry="6" fill="white" opacity="0.9"/>
+<path d="M10 12 L20 12 M10 15 L20 15 M10 18 L18 18" stroke="url(#speakingGrad)" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="15" cy="15" r="2" fill="url(#speakingGrad)"/>
+<path d="M15 8 L15 12 M15 18 L15 22" stroke="url(#speakingGrad)" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+</svg>
