@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joshua Driver - Technology Strategy for Purpose-Driven Organizations</title>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%2300d4a6"/><stop offset="100%" stop-color="%233b82f6"/></linearGradient></defs><path d="M32 4l22 12.7v25.6L32 56 10 42.3V16.7L32 4z" fill="none" stroke="url(%23g)" stroke-width="4" stroke-linejoin="round"/><path d="M26 24l-6 8 6 8M38 24l6 8-6 8" fill="none" stroke="url(%23g)" stroke-width="4" stroke-linecap="round"/></svg>' />
     <style>
         :root {
-            --bg: #fafafa;
-            --text: #1a1a1a;
-            --muted: #6b7280;
-            --primary: #2563eb;
-            --primary-2: #3b82f6;
-            --surface: #ffffff;
-            --surface-2: #f8fafc;
-            --hero-grad-1: #667eea;
-            --hero-grad-2: #764ba2;
+            --bg: #0f2234; /* deep navy */
+            --text: #e9eef5;
+            --muted: #a7b4c4;
+            --primary: #00d4a6; /* teal */
+            --primary-2: #3b82f6; /* blue */
+            --surface: #112739;
+            --surface-2: #0c1a29;
+            --hero-grad-1: #12304a;
+            --hero-grad-2: #1e3a5f;
         }
         * {
             margin: 0;
@@ -37,13 +38,13 @@
         
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(6, 15, 24, 0.6);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         header.scrolled {
@@ -58,9 +59,17 @@
         }
         
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+        }
+        .logo svg { display: block; height: 36px; width: 36px; }
+        .logo .wordmark {
             font-size: 24px;
             font-weight: 700;
-            color: var(--primary);
+            letter-spacing: 0.5px;
+            color: var(--text);
         }
         
         .nav-links {
@@ -71,14 +80,29 @@
         
         .nav-links a {
             text-decoration: none;
-            color: #4b5563;
+            color: var(--muted);
             font-weight: 500;
             transition: color 0.3s ease;
         }
         
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover { color: var(--primary-2); }
+
+        .theme-toggle {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: var(--surface-2);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
+        .theme-toggle:hover { transform: translateY(-1px); }
+        .theme-toggle svg { width: 20px; height: 20px; }
         
         /* Hero Section */
         .hero {
@@ -186,7 +210,7 @@
             padding: 40px;
             border-radius: 16px;
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         
         .service-card:hover {
@@ -251,7 +275,7 @@
             padding: 20px;
             background: var(--surface);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             width: 100%;
             height: 120px;
@@ -443,7 +467,7 @@
         
         /* Footer */
         footer {
-            background: #111827;
+            background: #0b1220;
             color: white;
             padding: 40px 0;
             text-align: center;
@@ -464,24 +488,17 @@
             }
         }
 
-        /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #0b0b0b;
-                --text: #e5e7eb;
-                --muted: #a1a1aa;
-                --surface: #111827;
-                --surface-2: #0f172a;
-            }
-            header {
-                background: rgba(17, 24, 39, 0.8);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            }
-            .nav-links a { color: #d1d5db; }
-            .nav-links a:hover { color: var(--primary); }
-            .organization-logo { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); }
-            .organization-logo img { opacity: 0.85; filter: grayscale(30%); }
-            footer { background: #0b1220; }
+        /* Light theme overrides, if selected */
+        [data-theme="light"] {
+            --bg: #f6f9fc;
+            --text: #0f172a;
+            --muted: #475569;
+            --primary: #0ea5e9;
+            --primary-2: #2563eb;
+            --surface: #ffffff;
+            --surface-2: #f1f5f9;
+            --hero-grad-1: #e0f2fe;
+            --hero-grad-2: #c7d2fe;
         }
         
         /* Responsive */
@@ -535,12 +552,30 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">Joshua Driver</div>
+            <div class="logo" aria-label="JDC Consulting">
+                <svg viewBox="0 0 64 64" role="img" aria-hidden="true" focusable="false">
+                    <defs>
+                        <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#00d4a6"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 4l22 12.7v25.6L32 56 10 42.3V16.7L32 4z" fill="none" stroke="url(#brandGrad)" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M26 24l-6 8 6 8M38 24l6 8-6 8" fill="none" stroke="url(#brandGrad)" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+                <span class="wordmark">JDC</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+                <svg id="themeIcon" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414"/>
+                    <circle cx="12" cy="12" r="4"/>
+                </svg>
+            </button>
         </nav>
     </header>
 
@@ -741,6 +776,38 @@
     </footer>
 
     <script>
+        // Theme persistence and toggle
+        (function() {
+            const root = document.documentElement;
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme === 'light') {
+                root.setAttribute('data-theme', 'light');
+            }
+            function setIcon(isLight) {
+                const icon = document.getElementById('themeIcon');
+                if (!icon) return;
+                icon.innerHTML = isLight
+                  ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+                  : '<path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95l-1.414 1.414"/><circle cx="12" cy="12" r="4"/>';
+            }
+            setIcon(storedTheme === 'light');
+            window.addEventListener('DOMContentLoaded', function() {
+                const toggle = document.getElementById('themeToggle');
+                if (!toggle) return;
+                toggle.addEventListener('click', function() {
+                    const isLight = root.getAttribute('data-theme') === 'light';
+                    if (isLight) {
+                        root.removeAttribute('data-theme');
+                        localStorage.removeItem('theme');
+                    } else {
+                        root.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                    }
+                    setIcon(!isLight);
+                });
+            });
+        })();
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -777,6 +844,16 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
+
+        // Header shadow on scroll
+        const header = document.querySelector('header');
+        const addShadow = () => {
+            if (!header) return;
+            if (window.scrollY > 10) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        };
+        addShadow();
+        window.addEventListener('scroll', addShadow);
 
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
