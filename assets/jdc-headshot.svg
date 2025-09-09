@@ -1,0 +1,28 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="headshotGrad" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#00d4a6"/>
+<stop offset="100%" stop-color="#3b82f6"/>
+</linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="#0f2234"/>
+<g transform="translate(50 50)">
+<!-- Background circles for depth -->
+<circle cx="150" cy="150" r="120" fill="url(#headshotGrad)" opacity="0.1"/>
+<circle cx="150" cy="150" r="100" fill="url(#headshotGrad)" opacity="0.2"/>
+<circle cx="150" cy="150" r="80" fill="url(#headshotGrad)" opacity="0.3"/>
+
+<!-- Main head circle -->
+<circle cx="150" cy="150" r="60" fill="url(#headshotGrad)" opacity="0.4"/>
+
+<!-- Face features -->
+<circle cx="140" cy="140" r="4" fill="#e9eef5"/>
+<circle cx="160" cy="140" r="4" fill="#e9eef5"/>
+<path d="M140 170 Q150 180 160 170" stroke="#e9eef5" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Professional styling -->
+<rect x="120" y="200" width="60" height="40" rx="8" fill="url(#headshotGrad)" opacity="0.6"/>
+<text x="150" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#e9eef5" font-weight="600">JOSHUA</text>
+<text x="150" y="240" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="10" fill="#e9eef5" opacity="0.8">DRIVER</text>
+</g>
+</svg>
