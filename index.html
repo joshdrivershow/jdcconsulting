@@ -343,6 +343,18 @@
             border-radius: 6px;
         }
         
+        /* Larger logos for specific organizations */
+        .organization-logo[data-logo="open-for-service"] img,
+        .organization-logo[data-logo="indianapolis-eoab"] img,
+        .organization-logo[data-logo="iyg"] img,
+        .organization-logo[data-logo="secureup"] img,
+        .organization-logo[data-logo="gener8tor"] img {
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
         /* About Section */
         .about {
             padding: 100px 0;
