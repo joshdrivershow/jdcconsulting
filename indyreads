@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce Nonprofit Consulting - Joshua Driver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f2234;
+            --text: #e9eef5;
+            --muted: #a7b4c4;
+            --primary: #00d4a6;
+            --primary-2: #3b82f6;
+            --surface: #112739;
+            --surface-2: #0c1a29;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--muted);
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Salesforce Hero */
+        .salesforce-hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .salesforce-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1.5" fill="rgba(0,212,166,0.1)"/><circle cx="75" cy="25" r="1" fill="rgba(59,130,246,0.08)"/><circle cx="50" cy="75" r="0.8" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Bio Section */
+        .bio-section {
+            padding: 100px 0;
+            background: var(--surface-2);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .bio-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: sticky;
+            top: 120px;
+        }
+
+        .bio-card h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .bio-card p {
+            color: var(--muted);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .bio-highlights {
+            margin-top: 24px;
+        }
+
+        .bio-highlights h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .bio-highlights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bio-highlights li {
+            color: var(--muted);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .bio-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .approach-content h3 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .approach-content p {
+            color: var(--muted);
+            margin-bottom: 20px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .phase-grid {
+            display: grid;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .phase-card {
+            background: var(--surface);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-left: 4px solid var(--primary);
+        }
+
+        .phase-card h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .phase-card p {
+            color: var(--muted);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        /* Consulting Kit Section */
+        .consulting-kit {
+            padding: 100px 0;
+            background: var(--surface);
+        }
+
+        .kit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .kit-card {
+            background: var(--surface-2);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .kit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 212, 166, 0.2);
+        }
+
+        .kit-card h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kit-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .kit-card h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0 8px 0;
+            color: var(--primary);
+        }
+
+        .kit-card p, .kit-card li {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .kit-card ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+
+        .kit-card ul li {
+            margin-bottom: 6px;
+        }
+
+        /* Gap Analysis Table */
+        .gap-table {
+            background: var(--surface);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 24px 0;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .gap-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .gap-table th {
+            background: var(--surface-2);
+            color: var(--text);
+            font-weight: 600;
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .gap-table td {
+            color: var(--muted);
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .priority-high {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .priority-medium {
+            color: var(--primary-2);
+            font-weight: 600;
+        }
+
+        /* Engagement Models */
+        .engagement-models {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 12px;
+            margin-top: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .engagement-models h4 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .model-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .model-item:last-child {
+            border-bottom: none;
+        }
+
+        .model-name {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .model-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: #ffffff;
+            padding: 18px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 166, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            margin-top: 24px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, var(--primary-2), var(--primary));
+            box-shadow: 0 14px 40px rgba(59, 130, 246, 0.35);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .bio-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .bio-card {
+                position: static;
+            }
+            
+            .kit-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .kit-card {
+                padding: 24px;
+            }
+            
+            .gap-table {
+                font-size: 14px;
+            }
+            
+            .gap-table th,
+            .gap-table td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Salesforce Hero Section -->
+    <section class="salesforce-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="section-title">Salesforce Nonprofit Consulting</h1>
+                <p class="section-subtitle">Transform your Salesforce org from overwhelming to optimized. I help nonprofits and mission-driven organizations maximize their Salesforce investment with strategic analysis, clear roadmaps, and practical implementation support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bio & Approach Section -->
+    <section class="bio-section">
+        <div class="container">
+            <div class="bio-grid">
+                <div class="bio-card">
+                    <h3>Consultant Profile</h3>
+                    <p>Entrepreneurial leader with proven expertise in SaaS, nonprofit technology, and corporate social responsibility. Founder of Selflessly (corporate philanthropy platform) and Open for Service (nationwide inclusion initiative).</p>
+                    
+                    <div class="bio-highlights">
+                        <h4>Key Expertise:</h4>
+                        <ul>
+                            <li>Salesforce & SaaS implementations</li>
+                            <li>Corporate philanthropy strategy</li>
+                            <li>Nonprofit technology optimization</li>
+                            <li>Public speaking & thought leadership</li>
+                        </ul>
+                    </div>
+
+                    <div class="bio-highlights">
+                        <h4>Why Work With Me:</h4>
+                        <ul>
+                            <li>Mission-driven heart meets operational reality</li>
+                            <li>Approachable, structured approach</li>
+                            <li>Impact-focused without unnecessary complexity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="approach-content">
+                    <h3>My Consulting Approach</h3>
+                    <p>I specialize in helping nonprofits and mission-driven organizations analyze current systems, identify inefficiencies, document organizational needs, and provide clear roadmaps for improved technology adoption and process alignment.</p>
+
+                    <div class="phase-grid">
+                        <div class="phase-card">
+                            <h4>Phase 1: Discovery & Analysis (3-4 weeks)</h4>
+                            <p>Stakeholder interviews, org & data structure review, process mapping, comprehensive gap analysis</p>
+                        </div>
+
+                        <div class="phase-card">
+                            <h4>Phase 2: Roadmap & Recommendations</h4>
+                            <p>Prioritized recommendations, quick wins vs long-term improvements, timeline & budget guidance</p>
+                        </div>
+
+                        <div class="phase-card">
+                            <h4>Phase 3: Implementation Support (optional)</h4>
+                            <p>Vendor selection/RFP support, change management & training, ongoing advisory services</p>
+                        </div>
+                    </div>
+
+                    <div class="engagement-models">
+                        <h4>Engagement Models</h4>
+                        <div class="model-item">
+                            <span class="model-name">Fixed price for Phase 1</span>
+                            <span class="model-price">$5,000 <span style="color: var(--muted); font-weight: 400; font-size: 14px;">(Nonprofit discount - normally $7,500)</span></span>
+                        </div>
+                        <div class="model-item">
+                            <span class="model-name">Fixed price for Phase 2</span>
+                            <span class="model-price">$2,500 <span style="color: var(--muted); font-weight: 400; font-size: 14px;">(Nonprofit discount - normally $3,750)</span></span>
+                        </div>
+                        <div class="model-item">
+                            <span class="model-name">Phase 3 Support</span>
+                            <span class="model-price">Hourly or Retainer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gap Analysis Example Section -->
+    <section style="padding: 60px 0; background: var(--surface-2);">
+        <div class="container">
+            <h2 style="font-family: var(--font-heading); font-size: 32px; font-weight: 600; text-align: center; margin-bottom: 16px; color: var(--text);">Sample Gap Analysis Output</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Here's an example of how I identify and prioritize improvement opportunities in your Salesforce organization:</p>
+            
+            <div class="gap-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Area</th>
+                            <th>Current State</th>
+                            <th>Desired State</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Donor Management</td>
+                            <td>Custom objects, manual imports</td>
+                            <td>Automated NPSP integration with donation platform</td>
+                            <td><span class="priority-high">High</span></td>
+                        </tr>
+                        <tr>
+                            <td>Volunteer Tracking</td>
+                            <td>Spreadsheet outside Salesforce</td>
+                            <td>Custom object or 3rd-party app integrated</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td>Reporting</td>
+                            <td>Limited dashboards</td>
+                            <td>Executive dashboards by program + board reports</td>
+                            <td><span class="priority-high">High</span></td>
+                        </tr>
+                        <tr>
+                            <td>Grant Management</td>
+                            <td>Word docs and email tracking</td>
+                            <td>Salesforce-based grant lifecycle management</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consulting Kit Section -->
+    <section class="consulting-kit">
+        <div class="container">
+            <h2 class="section-title">Salesforce Consulting Deliverables</h2>
+            <p class="section-subtitle">Three comprehensive resources I provide to ensure your Salesforce optimization project delivers measurable results</p>
+            
+            <div class="kit-grid">
+                <div class="kit-card">
+                    <h3><span class="kit-icon">1</span>Discovery Questionnaire</h3>
+                    <p>A comprehensive assessment framework to understand your organization's current state and future needs.</p>
+                    
+                    <h4>Organizational Context</h4>
+                    <ul>
+                        <li>Mission alignment with current Salesforce use</li>
+                        <li>Active user count and licensing structure</li>
+                        <li>Current integrations and dependencies</li>
+                    </ul>
+
+                    <h4>Pain Point Analysis</h4>
+                    <ul>
+                        <li>Time-consuming manual processes</li>
+                        <li>Missing or inaccurate reports</li>
+                        <li>User frustrations and adoption barriers</li>
+                    </ul>
+
+                    <h4>Future Requirements</h4>
+                    <ul>
+                        <li>Top 3 must-have outcomes</li>
+                        <li>Leadership reporting needs</li>
+                        <li>Growth and scaling considerations</li>
+                    </ul>
+                </div>
+
+                <div class="kit-card">
+                    <h3><span class="kit-icon">2</span>Comprehensive Analysis Report</h3>
+                    <p>Detailed assessment with actionable recommendations and clear implementation roadmap.</p>
+
+                    <h4>Executive Summary</h4>
+                    <p>Quick overview of current state, key issues, and recommended next steps for leadership review.</p>
+
+                    <h4>Current State Analysis</h4>
+                    <ul>
+                        <li>Org size, licensing, and integrations audit</li>
+                        <li>Key process documentation</li>
+                        <li>Pain point identification and impact assessment</li>
+                    </ul>
+
+                    <h4>Implementation Roadmap</h4>
+                    <ul>
+                        <li>Quick wins (1-2 weeks)</li>
+                        <li>Medium-term improvements (1-3 months)</li>
+                        <li>Long-term enhancements (6+ months)</li>
+                    </ul>
+                </div>
+
+                <div class="kit-card">
+                    <h3><span class="kit-icon">3</span>Implementation Playbook</h3>
+                    <p>Step-by-step guide for executing your Salesforce optimization with clear timelines and success metrics.</p>
+
+                    <h4>Phase-by-Phase Breakdown</h4>
+                    <ul>
+                        <li>Discovery & Analysis (2-3 weeks)</li>
+                        <li>Roadmap & Recommendations development</li>
+                        <li>Implementation support options</li>
+                    </ul>
+
+                    <h4>Implementation Options</h4>
+                    <ul>
+                        <li>Internal admin training vs external consultant</li>
+                        <li>Estimated effort and cost projections</li>
+                        <li>Vendor selection and RFP guidance</li>
+                    </ul>
+
+                    <h4>Change Management</h4>
+                    <ul>
+                        <li>User training and adoption strategies</li>
+                        <li>Communication plans for stakeholders</li>
+                        <li>Success metrics and tracking methods</li>
+                    </ul>
+
+                    <h4>Ongoing Support</h4>
+                    <ul>
+                        <li>Retainer-based advisory services</li>
+                        <li>Quarterly optimization reviews</li>
+                        <li>Emergency troubleshooting access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 36px; margin-bottom: 16px;">Ready to Optimize Your Salesforce?</h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">Let's transform your Salesforce from a source of frustration into a powerful tool that amplifies your mission impact.</p>
+            <a href="#contact" class="cta-button">Schedule Your Discovery Call</a>
+        </div>
+    </section>
+</body>
+</html>
