@@ -360,6 +360,7 @@
             object-fit: cover;
             display: block;
             filter: saturate(1.05) contrast(1.05);
+            background: linear-gradient(135deg, var(--hero-grad-1), var(--hero-grad-2));
         }
         
         /* Contact Section */
@@ -883,6 +884,37 @@
         };
         addShadow();
         window.addEventListener('scroll', addShadow);
+
+        // Image fallbacks for missing assets
+        (function ensureImages() {
+            const fallbackSvg = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+                    <defs>
+                        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#00d4a6"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#0f2234"/>
+                    <g transform="translate(40 40)">
+                        <path d="M80 0l55 32v64L80 128 25 96V32L80 0z" fill="none" stroke="url(#g)" stroke-width="8"/>
+                        <path d="M67 48l-15 16 15 16M93 48l15 16-15 16" fill="none" stroke="url(#g)" stroke-width="8" stroke-linecap="round"/>
+                        <text x="150" y="82" font-family="Outfit, Arial, sans-serif" font-size="64" fill="#e9eef5">JDC</text>
+                    </g>
+                </svg>
+            `);
+
+            document.querySelectorAll('.organizations img, .about-image img').forEach(img => {
+                const setFallback = () => { img.src = fallbackSvg; img.removeAttribute('srcset'); };
+                img.addEventListener('error', setFallback, { once: true });
+                if (!img.complete || img.naturalWidth === 0) {
+                    // Kick off load to catch error if path truly missing
+                    const test = new Image();
+                    test.src = img.src;
+                    test.onerror = setFallback;
+                }
+            });
+        })();
 
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
