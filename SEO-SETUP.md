@@ -6,25 +6,26 @@ already in the codebase and deploys automatically via Netlify.
 
 Do this part in a browser (Josh + Cowork Claude).
 
+## Status
+
+- ✅ **GA4 tag** — `G-JVGDFEN30R` installed in `<head>` and live.
+- ✅ **GSC verification token** — `5AXtG8329Bk-FFurucDGdIftJ3rOCvsAVW8Vo6W3zi0`
+  installed as a live `<meta name="google-site-verification">` tag.
+- ⏳ **Remaining (browser):** click Verify in GSC, submit the sitemap, import to Bing.
+
 ---
 
-## Google Search Console — verify + submit sitemap (5 steps)
+## Google Search Console — verify + submit sitemap
 
-1. **Add the property.** Go to https://search.google.com/search-console → *Add
-   property* → choose **URL prefix** → enter `https://joshuadriver.com/`.
-2. **Pick HTML tag verification.** In the verification dialog, expand
-   **HTML tag**. It shows a `<meta name="google-site-verification" content="…">`
-   tag. Copy the `content="…"` token.
-3. **Paste the token + redeploy.** In [index.html](index.html), find the
-   commented placeholder in `<head>`:
-   ```html
-   <!-- <meta name="google-site-verification" content="TODO-JOSH"> -->
-   ```
-   Replace `TODO-JOSH` with the real token **and uncomment the line** (remove the
-   `<!--` and `-->`). Commit + push to `main` — Netlify auto-deploys. Wait for the
-   deploy to go live (check the tag is present: `view-source:https://joshuadriver.com/`).
-4. **Click Verify** back in Search Console. It should confirm within a minute.
-5. **Submit the sitemap.** In GSC → *Sitemaps* → enter `sitemap.xml` → *Submit*.
+The property token is already live in the deployed HTML, so steps 1–3 are done.
+Finish in the browser:
+
+1. ✅ Property added: `https://joshuadriver.com/` (URL prefix).
+2. ✅ HTML-tag verification token pasted + deployed
+   (`content="5AXtG8329Bk-FFurucDGdIftJ3rOCvsAVW8Vo6W3zi0"`).
+3. ✅ Deployed live (confirm any time via `view-source:https://joshuadriver.com/`).
+4. **Click Verify** in Search Console — should confirm within a minute.
+5. **Submit the sitemap.** GSC → *Sitemaps* → enter `sitemap.xml` → *Submit*.
    Confirm it reports "Success" (may take a few minutes to a day to process).
 
 ## Bing Webmaster Tools — via GSC import (fastest)
